@@ -1,4 +1,6 @@
-import { View, SectionList, StyleSheet, Text } from 'react-native'
+import { View, SectionList, StyleSheet, Text, TouchableOpacity } from 'react-native';
+// import { useEffect, useState } from 'react';
+import { update } from './../api/tasks-call';
 
 const styles = StyleSheet.create({
     container: {
@@ -19,9 +21,28 @@ const styles = StyleSheet.create({
       fontSize: 18,
       height: 44,
     },
+    appButtonContainer: {
+      elevation: 8,
+      backgroundColor: "#25292e",
+      paddingHorizontal: 12,
+      marginLeft: 20
+    },
+    appButtonText: {
+      fontSize: 12,
+      color: "#fff",
+      fontWeight: "bold",
+      alignSelf: "center",
+      textTransform: "uppercase"
+    }
 });
 
 const TaskList = (list: any) => {
+
+    const listPress: any = (taskId: any): void => {
+      update(taskId);
+      // TODO change styles for the clicked element
+    }
+
     const sectionList: any[] = [];
 
     for (const element of list.data) {
@@ -37,14 +58,22 @@ const TaskList = (list: any) => {
         sectionList.push(addElement);
       }
     }
- 
+
     return (
       <View>
         <SectionList
             sections={sectionList}
-            renderItem={({item}) => <Text style={styles.item}>{item.name}</Text>}
+            renderItem={({item}) => <Text style={styles.item}>
+              {item.name}
+              <TouchableOpacity onPress={() => listPress(item.task_id)} style={styles.appButtonContainer}>
+                <Text style={styles.appButtonText}>Done!</Text>
+              </TouchableOpacity>
+              </Text>  
+            }
             renderSectionHeader={({section}) => (
-                <Text style={styles.sectionHeader}>{section.date}</Text>
+                <Text style={styles.sectionHeader}>
+                  {section.date}
+                </Text>
             )}
             keyExtractor={item => item.task_id}
         />
