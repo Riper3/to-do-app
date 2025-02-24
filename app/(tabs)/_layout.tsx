@@ -23,14 +23,8 @@ export default function TabLayout() {
             <Ionicons name={focused ? 'home-sharp' : 'home-outline'} color={color} size={24} />
         ),
         }} />
-      <Tabs.Screen name="rooms" options={{ 
-        title: 'Rooms',
-        tabBarIcon: ({ color, focused }) => (
-            <Ionicons name={focused ? 'home-sharp' : 'home-outline'} color={color} size={24}/>
-        ),
-        }} />
-      <Tabs.Screen name="schedule" options={{ 
-        title: 'Schedule',
+      <Tabs.Screen name="tasks" options={{ 
+        title: 'Tasks',
         tabBarIcon: ({ color, focused }) => (
             <Ionicons name={focused ? 'calendar-sharp' : 'calendar-outline'} color={color} size={24} />
         ),

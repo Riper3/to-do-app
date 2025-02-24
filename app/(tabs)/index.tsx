@@ -1,15 +1,23 @@
 import { View, StyleSheet } from 'react-native';
+import { useEffect, useState } from 'react';
 import { TaskList } from '@/components/elements';
-
-const testData = [
-  {date: '23/02/2025', data: ['Event 1', 'Event 2', 'Event 3']},
-];
+import { getAll } from '../../api/tasks-call';
+import { GetAllResponse } from '../../api/interfaces';
 
 export default function Index() {
+
+  const [tasks, setTasks] = useState<GetAllResponse>();
+  
+  useEffect(() => {
+    getAll().then(result => setTasks(result));
+  }, []);
+
   return (
+    tasks ?
     <View style={styles.container}>
-      <TaskList data={testData}/>
+      <TaskList data={tasks}/>
     </View>
+    : null
   );
 }
 
