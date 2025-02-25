@@ -5,8 +5,8 @@ const getAll = (): Promise<GetAllResponse> => {
     return standardCall('tasks/get-all', 'GET');
 }
 
-const insert = (): any => {
-    return standardCall('tasks/insert', 'POST');
+const insert = (dueDate: string, name: string): any => {
+    return standardCall('tasks/insert', 'POST', {name: name, due_date: dueDate});
 }
 
 const update = (id: number): any => {
