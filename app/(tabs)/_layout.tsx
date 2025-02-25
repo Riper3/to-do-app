@@ -23,12 +23,6 @@ export default function TabLayout() {
             <Ionicons name={focused ? 'home-sharp' : 'home-outline'} color={color} size={24} />
         ),
         }} />
-      <Tabs.Screen name="tasks" options={{ 
-        title: 'Tasks',
-        tabBarIcon: ({ color, focused }) => (
-            <Ionicons name={focused ? 'calendar-sharp' : 'calendar-outline'} color={color} size={24} />
-        ),
-        }} />
     </Tabs>
   );
 }
