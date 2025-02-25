@@ -13,4 +13,8 @@ const update = (id: number): any => {
     return standardCall(`tasks/update/${id}`, 'PUT');
 }
 
-export {getAll, insert, update};
+const newDevice = (deviceId: string): any => {
+    return standardCall('auth/new-device', 'POST', {device_id: deviceId});
+}
+
+export {getAll, insert, update, newDevice};

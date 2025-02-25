@@ -1,15 +1,19 @@
 import { View, StyleSheet } from 'react-native';
 import { useEffect, useState } from 'react';
 import { TaskList } from '@/components/elements';
-import { getAll } from '../../api/tasks-call';
+import { getAll, newDevice } from '../../api/tasks-call';
 import { GetAllResponse } from '../../api/interfaces';
+import DeviceInfo from 'react-native-device-info';
 
 export default function Index() {
 
   const [tasks, setTasks] = useState<GetAllResponse>();
+  const [deviceId, setDeviceId] = useState('');
   
   useEffect(() => {
-    getAll().then(result => setTasks(result));
+    newDevice(DeviceInfo.getDeviceId()).then((result : any) => setDeviceId(result.token));
+    
+    getAll().then((result : any) => setTasks(result));
   }, []);
 
   return (
