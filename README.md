@@ -1,3 +1,19 @@
+# Overview
+
+This is an APP that depends of https://github.com/Riper3/to-do-api
+
+# Installation
+
+git clone https://github.com/Riper3/to-do-app.git
+
+cd to-do-app
+
+npm install
+
+Create a .env on the root directory with the following values and filled it with your data:
+
+EXPO_PUBLIC_API_URL= https://api.url.com
+
 # Welcome to your Expo app 👋
 
 This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
