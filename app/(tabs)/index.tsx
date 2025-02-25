@@ -1,26 +1,28 @@
-import { Text, View, StyleSheet, TextInput, TouchableOpacity } from 'react-native';
+import { Text, View, TextInput, TouchableOpacity } from 'react-native';
 import { useEffect, useState } from 'react';
 import { TaskList } from '@/components/elements';
 import { getAll, newDevice, insert } from '../../api/tasks-call';
 import { GetAllResponse } from '../../api/interfaces';
 import DeviceInfo from 'react-native-device-info';
+import { styles } from '../../assets/styles';
 
 export default function Index() {
 
   const [tasks, setTasks] = useState<GetAllResponse>([]);
-  const [deviceId, setDeviceId] = useState('');
+  const [token, setToken] = useState('');
   const [dueDate, onChangeDueDate] = useState('');
   const [name, onChangeName] = useState('');
   
   useEffect(() => {
-    newDevice(DeviceInfo.getDeviceId()).then((result : any) => setDeviceId(result.token));
+    newDevice(DeviceInfo.getDeviceId()).then((result : any) => setToken(result.token));
     
     getAll().then((result : any) => setTasks(result));
   }, []);
 
-  const insertEvent: any = (taskId: any): void => {
+  const insertEvent: any = (): void => {
     insert(dueDate, name);
-
+    onChangeDueDate('');
+    onChangeName('');
     getAll().then((result : any) => setTasks(result));
   }
 
@@ -49,41 +51,10 @@ export default function Index() {
           onChangeText={onChangeName}
         />
 
-        <TouchableOpacity onPress={insertEvent} style={styles.appButtonContainer}>
+        <TouchableOpacity onPress={insertEvent} style={styles.appButtonContainerNoMargin}>
           <Text style={styles.appButtonText}>New Event</Text>
         </TouchableOpacity>
       </View>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  text: {
-    color: '#fff',
-  },
-  button: {
-    fontSize: 20,
-    textDecorationLine: 'underline',
-    color: '#fff',
-  },
-  titleText: {
-    fontSize: 20,
-    padding: 10,
-    fontWeight: 'bold',
-  },
-  appButtonContainer: {
-    elevation: 8,
-    backgroundColor: "#25292e",
-    paddingHorizontal: 2,
-  },
-  appButtonText: {
-    fontSize: 12,
-    color: "#fff",
-    fontWeight: "bold",
-    alignSelf: "center",
-    textTransform: "uppercase"
-  }
-});

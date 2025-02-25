@@ -1,40 +1,6 @@
 import { View, SectionList, StyleSheet, Text, TouchableOpacity } from 'react-native';
-// import { useEffect, useState } from 'react';
+import { styles } from './../assets/styles';
 import { update } from './../api/tasks-call';
-
-const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      paddingTop: 22,
-    },
-    sectionHeader: {
-      paddingTop: 2,
-      paddingLeft: 10,
-      paddingRight: 10,
-      paddingBottom: 2,
-      fontSize: 14,
-      fontWeight: 'bold',
-      backgroundColor: 'rgba(247,247,247,1.0)',
-    },
-    item: {
-      padding: 10,
-      fontSize: 18,
-      height: 44,
-    },
-    appButtonContainer: {
-      elevation: 8,
-      backgroundColor: "#25292e",
-      paddingHorizontal: 12,
-      marginLeft: 20
-    },
-    appButtonText: {
-      fontSize: 12,
-      color: "#fff",
-      fontWeight: "bold",
-      alignSelf: "center",
-      textTransform: "uppercase"
-    }
-});
 
 const TaskList = (list: any) => {
 
