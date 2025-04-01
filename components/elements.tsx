@@ -2,16 +2,19 @@ import { View, SectionList, StyleSheet, Text, TouchableOpacity } from 'react-nat
 import { styles } from './../assets/styles';
 import { update } from './../api/tasks-call';
 
-const TaskList = (list: any) => {
+const TaskList = (params: any) => {
 
     const listPress: any = (taskId: any): void => {
       update(taskId);
-      // TODO change styles for the clicked element
+
+      params.setTasks((prevTasks: any) =>
+        prevTasks.filter((task: any) => task.task_id !== taskId )
+      );
     }
 
     const sectionList: any[] = [];
 
-    for (const element of list.data) {
+    for (const element of params.tasks) {
       const existingObject: any = sectionList.find(e => e.date == element.due_date);
 
       if (existingObject) {

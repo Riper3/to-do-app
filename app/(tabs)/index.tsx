@@ -34,7 +34,7 @@ export default function Index() {
       ? 
       <View style={styles.container}>
         <Text style={styles.titleText}>Events</Text>
-        <TaskList data={tasks}/>
+        <TaskList tasks={tasks} setTasks={setTasks}/>
       </View>
       : 
       <Text>No events</Text>}
