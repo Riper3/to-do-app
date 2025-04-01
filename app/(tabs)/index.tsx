@@ -19,11 +19,13 @@ export default function Index() {
     getAll().then((result : any) => setTasks(result));
   }, []);
 
-  const insertEvent: any = (): void => {
-    insert(dueDate, name);
+  const insertEvent: any = async (): Promise<any> => {
+    const newTask = await insert(dueDate, name);
+
+    setTasks((prevTasks) => [...prevTasks, ...newTask]);
+
     onChangeDueDate('');
     onChangeName('');
-    getAll().then((result : any) => setTasks(result));
   }
 
   return (

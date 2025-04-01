@@ -2,7 +2,7 @@ import standardCall from './standard-call';
 import { GetAllResponse } from './interfaces';
 
 const getAll = (): Promise<GetAllResponse> => {
-    return standardCall('tasks/get-all', 'GET');
+    return standardCall('tasks/get', 'GET');
 }
 
 const insert = (dueDate: string, name: string): any => {
