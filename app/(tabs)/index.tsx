@@ -30,7 +30,7 @@ export default function Index() {
 
   return (
     <View style={styles.container}>
-      {tasks.length 
+      {tasks?.length 
       ? 
       <View style={styles.container}>
         <Text style={styles.titleText}>Events</Text>
@@ -39,21 +39,23 @@ export default function Index() {
       : 
       <Text>No events</Text>}
 
-      <View style={styles.container}>
+      <View style={styles.formContainer}>
         <Text style={styles.titleText}>Insert event</Text>
 
-        <TextInput 
+        <TextInput
           placeholder="yyyy-mm-dd"
-          value= {dueDate} 
+          value={dueDate}
           onChangeText={onChangeDueDate}
-          />
+          style={styles.input}
+        />
         <TextInput
           placeholder="Name"
-          value= {name} 
+          value={name}
           onChangeText={onChangeName}
+          style={styles.input}
         />
 
-        <TouchableOpacity onPress={insertEvent} style={styles.appButtonContainerNoMargin}>
+        <TouchableOpacity onPress={insertEvent} style={styles.appButtonContainerForm}>
           <Text style={styles.appButtonText}>New Event</Text>
         </TouchableOpacity>
       </View>

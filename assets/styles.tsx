@@ -2,7 +2,8 @@ import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
     container: {
-      flex: 1,
+      margin: 0,
+      padding: 0
     },
     text: {
       color: '#fff',
@@ -17,38 +18,84 @@ const styles = StyleSheet.create({
       padding: 10,
       fontWeight: 'bold',
     },
-    appButtonContainer: {
-      elevation: 8,
-      backgroundColor: "#25292e",
-      paddingHorizontal: 2,
-      marginLeft: 20
-    },
-    appButtonContainerNoMargin: {
-        elevation: 8,
-        backgroundColor: "#25292e",
-        paddingHorizontal: 2
-      },
-    appButtonText: {
-      fontSize: 12,
-      color: "#fff",
-      fontWeight: "bold",
-      alignSelf: "center",
-      textTransform: "uppercase"
-    },
-    sectionHeader: {
-      paddingTop: 2,
-      paddingLeft: 10,
-      paddingRight: 10,
-      paddingBottom: 2,
-      fontSize: 14,
-      fontWeight: 'bold',
-      backgroundColor: 'rgba(247,247,247,1.0)',
+    listContainer: {
+      maxHeight: 330
     },
     item: {
-      padding: 10,
-      fontSize: 18,
-      height: 44,
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      paddingVertical: 10,
+      paddingHorizontal: 15,
+      borderBottomWidth: 1,
+      borderBottomColor: '#ccc',
     },
+    sectionHeader: {
+      fontSize: 18,
+      fontWeight: 'bold',
+      padding: 10,
+      backgroundColor: '#f1f1f1',
+    },
+    appButtonContainerForm: {
+      width: '100%',
+      backgroundColor: '#4CAF50',
+      paddingVertical: 12,
+      borderRadius: 8,
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    appButtonContainer: {
+      backgroundColor: '#4CAF50',
+      paddingVertical: 10,
+      paddingHorizontal: 20,
+      borderRadius: 5,
+      justifyContent: 'center',
+      alignItems: 'center',
+    },
+    appButtonText: {
+      color: '#fff',
+      fontSize: 14,
+      fontWeight: 'bold',
+    },
+    textContainer: {
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      width: '100%',
+      alignItems: 'center',
+    },
+    name: {
+      flex: 1,
+      fontSize: 16,
+    },
+    hour: {
+      flex: 1, 
+      fontSize: 14,
+      textAlign: 'left',
+      color: '#666',
+    },
+    buttonWrapper: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'flex-end',
+    },
+    formContainer: {
+      flex: 1,
+      padding: 20,
+      justifyContent: 'center',
+      alignItems: 'center',
+      backgroundColor: '#f9f9f9',
+    },
+    input: {
+      width: '100%',
+      height: 50,
+      borderColor: '#ddd',
+      borderWidth: 1,
+      borderRadius: 8,
+      paddingLeft: 15,
+      marginBottom: 15,
+      fontSize: 16,
+      backgroundColor: '#fff',
+    }
 });
 
 export { styles };

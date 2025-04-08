@@ -1,4 +1,4 @@
-import { View, SectionList, StyleSheet, Text, TouchableOpacity } from 'react-native';
+import { View, SectionList, StyleSheet, Text, TouchableOpacity, ScrollView } from 'react-native';
 import { styles } from './../assets/styles';
 import { update } from './../api/tasks-call';
 
@@ -29,24 +29,30 @@ const TaskList = (params: any) => {
     }
 
     return (
-      <View>
+      <ScrollView style={styles.listContainer}>
         <SectionList
-            sections={sectionList}
-            renderItem={({item}) => <Text style={styles.item}>
-              {item.name}
-              <TouchableOpacity onPress={() => listPress(item.task_id)} style={styles.appButtonContainer}>
-                <Text style={styles.appButtonText}>Done!</Text>
-              </TouchableOpacity>
-              </Text>  
-            }
-            renderSectionHeader={({section}) => (
-                <Text style={styles.sectionHeader}>
-                  {section.date}
-                </Text>
-            )}
-            keyExtractor={item => item.task_id}
+          sections={sectionList}
+          renderItem={({item}) => (
+            <View style={styles.item}>
+              <View style={styles.textContainer}>
+                <Text style={styles.name}>{item.name}</Text>
+                <Text style={styles.hour}>12:30</Text>
+              </View>
+              <View style={styles.buttonWrapper}>
+                <TouchableOpacity onPress={() => listPress(item.task_id)} style={styles.appButtonContainer}>
+                  <Text style={styles.appButtonText}>Done!</Text>
+                </TouchableOpacity>
+              </View>
+            </View>
+          )}
+          renderSectionHeader={({section}) => (
+            <Text style={styles.sectionHeader}>
+              {section.date}
+            </Text>
+          )}
+          keyExtractor={item => item.task_id}
         />
-      </View>
+      </ScrollView>
     );
 };
   
