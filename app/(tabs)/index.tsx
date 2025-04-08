@@ -1,5 +1,6 @@
-import { Text, View, TextInput, TouchableOpacity } from 'react-native';
+import { Text, View, TextInput, TouchableOpacity, Modal } from 'react-native';
 import { useEffect, useState } from 'react';
+import { Calendar, CalendarList, Agenda } from 'react-native-calendars';
 import { TaskList } from '@/components/elements';
 import { getAll, newDevice, insert } from '../../api/tasks-call';
 import { GetAllResponse } from '../../api/interfaces';
@@ -12,6 +13,10 @@ export default function Index() {
   const [token, setToken] = useState('');
   const [dueDate, onChangeDueDate] = useState('');
   const [name, onChangeName] = useState('');
+  const [modalVisible, setModalVisible] = useState(false);
+
+  const openModal = () => setModalVisible(true);
+  const closeModal = () => setModalVisible(false);
   
   useEffect(() => {
     newDevice(DeviceInfo.getDeviceId()).then((result : any) => setToken(result.token));
@@ -24,6 +29,7 @@ export default function Index() {
 
     setTasks((prevTasks) => [...prevTasks, ...newTask]);
 
+    closeModal();
     onChangeDueDate('');
     onChangeName('');
   }
@@ -39,15 +45,28 @@ export default function Index() {
       : 
       <Text>No events</Text>}
 
-      <View style={styles.formContainer}>
+      <Modal 
+        style={styles.formContainer}
+        animationType="fade"
+        visible={modalVisible}
+        onRequestClose={closeModal}
+      >
         <Text style={styles.titleText}>Insert event</Text>
 
-        <TextInput
-          placeholder="yyyy-mm-dd"
-          value={dueDate}
-          onChangeText={onChangeDueDate}
-          style={styles.input}
+        <TouchableOpacity onPress={closeModal} style={styles.btnCloseModal}>
+          <Text>X</Text>
+        </TouchableOpacity>
+
+        <Calendar
+          onDayPress={(day: any) => {
+            onChangeDueDate(day.dateString);
+          }}
+
+          markedDates={{
+            [dueDate]: {selected: true, disableTouchEvent: true, selectedDotColor: 'orange'}
+          }}
         />
+        
         <TextInput
           placeholder="Name"
           value={name}
@@ -58,7 +77,11 @@ export default function Index() {
         <TouchableOpacity onPress={insertEvent} style={styles.appButtonContainerForm}>
           <Text style={styles.appButtonText}>New Event</Text>
         </TouchableOpacity>
-      </View>
+      </Modal>
+      
+      <TouchableOpacity onPress={openModal} style={styles.btnInsertEvent}>
+        <Text>+</Text>
+      </TouchableOpacity>
     </View>
   );
 }

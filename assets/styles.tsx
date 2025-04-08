@@ -1,4 +1,6 @@
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Dimensions  } from 'react-native';
+
+const { height, width } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
     container: {
@@ -19,7 +21,7 @@ const styles = StyleSheet.create({
       fontWeight: 'bold',
     },
     listContainer: {
-      maxHeight: 330
+      maxHeight: height * 0.7
     },
     item: {
       flexDirection: 'row',
@@ -95,6 +97,48 @@ const styles = StyleSheet.create({
       marginBottom: 15,
       fontSize: 16,
       backgroundColor: '#fff',
+    },
+    btnInsertEvent: {
+      position: 'absolute',
+      width: 45,
+      height: 45,
+      backgroundColor: '#4CAF50',
+      color: '#fff',
+      textAlign: 'center',
+      lineHeight: 45,
+      borderRadius: 50,
+      fontSize: 20,
+      fontWeight: '100',
+      bottom: -60,
+      left: '50%',
+      marginLeft: -22.5,
+      justifyContent: 'center',
+      alignItems: 'center',
+      shadowColor: '#4CAF50',
+      shadowOffset: { width: 0, height: 9 },
+      shadowOpacity: 0.4,
+      shadowRadius: 15,
+    },
+    btnCloseModal: {
+      position: 'absolute',
+      width: 45,
+      height: 45,
+      backgroundColor: '#FF0000',
+      color: '#fff',
+      textAlign: 'center',
+      lineHeight: 45,
+      borderRadius: 50,
+      fontSize: 20,
+      fontWeight: '100',
+      bottom: 22.5,
+      left: '50%',
+      marginLeft: -22.5,
+      justifyContent: 'center',
+      alignItems: 'center',
+      shadowColor: '#FF0000',
+      shadowOffset: { width: 0, height: 9 },
+      shadowOpacity: 0.4,
+      shadowRadius: 15,
     }
 });
 
